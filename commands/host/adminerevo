@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## Description: Launch a browser with Adminer
+## Usage: adminerevo
+## Example: "ddev adminerevo"
+
+DDEV_ADMINEREVO_PORT=9100
+DDEV_ADMINEREVO_HTTPS_PORT=9101
+
+if [ ${DDEV_PRIMARY_URL%://*} = "http" ] || [ -n "${GITPOD_WORKSPACE_ID:-}" ] || [ "${CODESPACES:-}" = "true" ]; then
+    ddev launch :$DDEV_ADMINEREVO_PORT
+else
+    ddev launch :$DDEV_ADMINEREVO_HTTPS_PORT
+fi
